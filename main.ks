@@ -98,7 +98,7 @@ function STAGE_SEPARATION {
 			lock throttle to 0.
 
 			wait 1.
-
+			S1_CPU[0]:getmodule("kOSProcessor"):connection:sendmessage("Run Recovery").
 			S1_INTERSTAGE[0]:getmodule("ModuleDecouple"):doaction("Decouple Top Node", true).
 			set S1_SEPARATED to true.
 

@@ -14,7 +14,8 @@ global SHIP_TAGS is lexicon(
         "CPU", "S1_CPU",
         "ENGINE", "S1_ENGINE",
         "TANK", "S1_TANK",
-        "INTERSTAGE", "S1_INTERSTAGE"
+        "INTERSTAGE", "S1_INTERSTAGE",
+        "PARACHUTE", "S1_CHUTE"
     ),
 
     "SECOND STAGE", lexicon(

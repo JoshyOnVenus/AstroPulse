@@ -20,7 +20,4 @@ until false {
         lock throttle to 1.
         runoncepath("0:/main.ks").
     } 
-    else if decodedMessage = "Run Static Fire" {
-
-    }
 }

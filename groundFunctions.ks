@@ -12,7 +12,8 @@ function DEFINE_PARTS {
     global S1_CPU to core:vessel:partstagged(SHIP_TAGS["FIRST STAGE"]["CPU"]).
     global S1_ENGINE to core:vessel:partstagged(SHIP_TAGS["FIRST STAGE"]["ENGINE"]).
     global S1_TANK to core:vessel:partstagged(SHIP_TAGS["FIRST STAGE"]["TANK"]).
-    global S1_INTERSTAGE to ship:partstagged(SHIP_TAGS["FIRST STAGE"]["INTERSTAGE"]).
+    global S1_INTERSTAGE to core:vessel:partstagged(SHIP_TAGS["FIRST STAGE"]["INTERSTAGE"]).
+    global S1_CHUTE to core:vessel:partstagged(SHIP_TAGS["FIRST STAGE"]["PARACHUTE"]).
 
     //Define Stage 2
     global S2_CPU to core:vessel:partstagged(SHIP_TAGS["SECOND STAGE"]["CPU"]).
