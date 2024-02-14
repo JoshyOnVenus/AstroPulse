@@ -2,7 +2,7 @@ runoncepath("0:/partlist.ks").
 runoncepath("0:/groundFunctions.ks").
 DEFINE_PARTS().
 
-clearscreen.
+//clearscreen.
 S2_CPU[0]:getmodule("kOSProcessor"):doevent("Open Terminal").
 print "Stage 2 - Waiting For Message".
 

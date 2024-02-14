@@ -22,7 +22,7 @@ when altitude >= 70000 and ship:dynamicpressure <= 2 and fairings_attached then 
 	PF_DEPLOY().
 }
 
-clearscreen.
+//clearscreen.
 local runmode to 1. //Starts the 1st stage of the script
 until runmode = 0 {
 	if S1_SEPARATED = false {
