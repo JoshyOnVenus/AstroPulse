@@ -72,24 +72,24 @@ function ENGINE_CONTROL {
 function RESOURCE {
 	parameter stageName.
 	if stageName = "FIRST STAGE" {
-		for resource in S1_TANK:resources {
-			if resource:name = "LiquidFuel" {
+		for resource in S1_TANK[0]:resources {
+			if resource:name = "LIQUIDFUEL" {
 				global S1_FUEL_AMOUNT to resource:amount.
 				global S1_FUEL_CAPACITY to resource:capacity.
 			}
-			else if resource:name = "Oxidizer" {
+			else if resource:name = "OXIDIZER" {
 				global S1_OX_AMOUNT to resource:amount.
 				global S1_OX_CAPACITY to resource:capacity.
 			}
 		}
 	}
 	else if stageName = "SECOND STAGE" {
-		for resource in S2_TANK:resources {
-			if resource:name = "LiquidFuel" {
+		for resource in S2_TANK[0]:resources {
+			if resource:name = "LIQUIDFUEL" {
 				global S2_FUEL_AMOUNT to resource:amount.
 				global S2_FUEL_CAPACITY to resource:capacity.
 			}
-			else if resource:name = "Oxidizer" {
+			else if resource:name = "OXIDIZER" {
 				global S2_OX_AMOUNT to resource:amount.
 				global S2_OX_CAPACITY to resource:capacity.
 			}
