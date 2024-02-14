@@ -18,7 +18,7 @@ until false {
 
     if decodedMessage = "Run Stage 2" {
         lock throttle to 1.
-        runoncepath("0:/launch.ks").
+        runoncepath("0:/main.ks").
     } 
     else if decodedMessage = "Run Static Fire" {
 
