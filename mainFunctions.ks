@@ -7,12 +7,6 @@ global fairings_attached to true.
 global S1_ENGINE_ON to false.
 global S2_ENGINE_ON to false.
 
-// function GND_LAUNCH_BASE_RELEASE {
-//     for part in GND_BASE {
-//         part:getmodule("LaunchClamp"):doaction("release clamp", true).
-// 		print "Launch Base Released".
-//     }
-// }
 
 function PF_DEPLOY {
     for part in S2_FAIRING {
@@ -70,10 +64,35 @@ function ENGINE_CONTROL {
 				ENGINE:getmodule("ModuleEnginesFX"):doaction("Activate Engine", true).
 				print "Stage 2 - Engine Shutdown".
 			}
+			set S2_ENGINE_ON to false.
 		}
 	}
 }
 
 function RESOURCE {
-	parameter resourceName, stageName.
+	parameter stageName.
+	if stageName = "FIRST STAGE" {
+		for resource in S1_TANK:resources {
+			if resource:name = "LiquidFuel" {
+				global S1_FUEL_AMOUNT to resource:amount.
+				global S1_FUEL_CAPACITY to resource:capacity.
+			}
+			else if resource:name = "Oxidizer" {
+				global S1_OX_AMOUNT to resource:amount.
+				global S1_OX_CAPACITY to resource:capacity.
+			}
+		}
+	}
+	else if stageName = "SECOND STAGE" {
+		for resource in S2_TANK:resources {
+			if resource:name = "LiquidFuel" {
+				global S2_FUEL_AMOUNT to resource:amount.
+				global S2_FUEL_CAPACITY to resource:capacity.
+			}
+			else if resource:name = "Oxidizer" {
+				global S2_OX_AMOUNT to resource:amount.
+				global S2_OX_CAPACITY to resource:capacity.
+			}
+		}
+	}
 }

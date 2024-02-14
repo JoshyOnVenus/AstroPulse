@@ -1,4 +1,9 @@
+runoncepath("0:/partlist.ks").
+runoncepath("0:/groundFunctions.ks").
 runoncepath("0:/mainFunctions.ks").
+DEFINE_PARTS().
+RESOURCE("FIRST STAGE").
+RESOURCE("SECOND STAGE").
 
 set startTime to time:seconds.
 lock g to (constant():g * body:mass) / (body:radius + ship:altitude)^2. //Calculates the gravity of the current celestial body
@@ -19,6 +24,8 @@ when altitude >= 70000 and ship:dynamicpressure <= 2 and fairings_attached then 
 
 set runmode to 1. //Starts the 1st stage of the script
 until runmode = 0 {
+	RESOURCE("FIRST STAGE").
+	RESOURCE("SECOND STAGE").	
 	if runmode = 1 {
 		sas off.
 		lock throttle to 1. //-(apoapsis/targetAlt). //Locks throttle to 100%
@@ -56,6 +63,15 @@ until runmode = 0 {
 			set runmode to 0. //Ends the script
 		}
 	}
+	print "Stage 1 FUEL: " + S1_FUEL_AMOUNT at(0,5).
+	print "Stage 1 FUEL CAP: " + S1_FUEL_CAPACITY at(0,6).
+	print "Stage 1 OX: " + S1_OX_AMOUNT at(0,7).
+	print "Stage 1 OX CAP: " + S1_OX_CAPACITY at(0,8).
+	print "Stage 2 FUEL: " + S2_FUEL_AMOUNT at(0,9).
+	print "Stage 2 FUEL CAP: " + S2_FUEL_CAPACITY at(0,10).
+	print "Stage 2 OX: " + S2_OX_AMOUNT at(0,11).
+	print "Stage 2 OX CAP: " + S2_OX_CAPACITY at(0,12).
+
 }
 print "In Orbit! (Hopefully)".
 set runmode to -1.
