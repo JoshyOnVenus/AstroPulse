@@ -7,20 +7,6 @@ global fairings_attached to true.
 global S1_ENGINE_ON to false.
 global S2_ENGINE_ON to false.
 
-function GND_STRONGBACK_RETRACT {
-    for part in GND_STRONGBACK {
-        part:getmodulebyindex(10):doaction("toggle 2-step fallback retract", true).
-		print "Strongback Retracted".
-    }
-}
-
-function GND_HOLD_DOWN_CLAMP_RELEASE {
-    for part in GND_CLAMPS {
-        part:getmodule("ModuleAnimateGenericExtra"):doaction("toggle hold-down", true).
-		print "Hold Down Clamp Released".
-    }
-}
-
 // function GND_LAUNCH_BASE_RELEASE {
 //     for part in GND_BASE {
 //         part:getmodule("LaunchClamp"):doaction("release clamp", true).
@@ -86,4 +72,8 @@ function ENGINE_CONTROL {
 			}
 		}
 	}
+}
+
+function RESOURCE {
+	parameter resourceName, stageName.
 }

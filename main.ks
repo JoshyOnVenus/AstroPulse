@@ -19,17 +19,6 @@ when altitude >= 70000 and ship:dynamicpressure <= 2 and fairings_attached then 
 
 set runmode to 1. //Starts the 1st stage of the script
 until runmode = 0 {
-	// if maxthrust = 0 {
-	// 	if(ship:liquidfuel > 0 or ship:solidfuel > 0) {
-	// 		HUDTEXT("Staging!", 4, 2, 32, YELLOW, false).
-	// 		lock throttle to 0.
-	// 		stage.
-	// 		wait 1.
-	// 		lock throttle to 1.
-	// 	} else {
-	// 		HUDTEXT("No Fuel Detected!", 4, 2, 32, RED, false).
-	// 	}
-	// }
 	if runmode = 1 {
 		sas off.
 		lock throttle to 1. //-(apoapsis/targetAlt). //Locks throttle to 100%
@@ -67,15 +56,6 @@ until runmode = 0 {
 			set runmode to 0. //Ends the script
 		}
 	}
-	//Display neccesary data for in-flight analysing
-	// print "Ideal Pitch: " + idealPitch AT(0,5).
-	// print "Pitch: " + (90 - vectorangle(UP:FOREVECTOR, FACING:FOREVECTOR)) AT(0,6).
-	// print "Pitch Error (best at 0): " + ((90 - vectorangle(UP:FOREVECTOR, FACING:FOREVECTOR)) - idealPitch) AT(0,7).
-	// print "Apoapsis: " + apoapsis AT(0,8).
-	// print "Periapsis: " + periapsis AT(0,9).
-	// print "Inclination: " + orbit:inclination AT(0,10).
-	// print "Runmode: " + runmode AT(0,1).
-	// print "Altitude: " + altitude AT(0,11).
 }
 print "In Orbit! (Hopefully)".
 set runmode to -1.

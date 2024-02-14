@@ -21,3 +21,17 @@ function DEFINE_PARTS {
     global S2_PAYLOAD_ADAPTER to ship:partstagged(SHIP_TAGS["SECOND STAGE"]["PAYLOAD ADAPTER"]).
     global S2_FAIRING to ship:partstagged(SHIP_TAGS["SECOND STAGE"]["FAIRING"]).
 }
+
+function GND_STRONGBACK_RETRACT {
+    for part in GND_STRONGBACK {
+        part:getmodulebyindex(10):doaction("toggle 2-step fallback retract", true).
+		print "Strongback Retracted".
+    }
+}
+
+function GND_HOLD_DOWN_CLAMP_RELEASE {
+    for part in GND_CLAMPS {
+        part:getmodule("ModuleAnimateGenericExtra"):doaction("toggle hold-down", true).
+		print "Hold Down Clamp Released".
+    }
+}
