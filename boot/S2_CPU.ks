@@ -14,7 +14,7 @@ until false {
     set recievedMessage to core:messages:pop.
     set decodedMessage to recievedMessage:content.
 
-    print "Stage 2 - Message Recieved: " + decodedMessage.
+    print "Stage 2 - Message Recieved: " + decodedMessage at(0,2).
 
     if decodedMessage = "Run Stage 2" {
         lock throttle to 1.

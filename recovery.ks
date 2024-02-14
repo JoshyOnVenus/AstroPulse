@@ -7,6 +7,7 @@ print "Attempting To Recover...".
 
 lock steering to srfretrograde.
 
-
-
-S1_CHUTE:getmodule("")
+S1_CHUTE[0]:getmodule("ModuleParachute"):doaction("deploy chute", true).
+until status = "LANDED" or status = "SPLASHED" {
+    S2_CPU[0]:getmodule("kOSProcessor"):connection:sendmessage(altitude).
+}
