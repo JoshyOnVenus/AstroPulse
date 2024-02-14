@@ -1,7 +1,6 @@
 @lazyglobal off.
 runoncepath("0:/partlist.ks").
 runoncepath("0:/groundFunctions.ks").
-DEFINE_PARTS().
 
 global FAIRINGS_ATTACHED to true.
 global PAYLOAD_SEPARATED to false.

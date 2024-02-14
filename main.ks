@@ -2,7 +2,6 @@
 runoncepath("0:/partlist.ks").
 runoncepath("0:/groundFunctions.ks").
 runoncepath("0:/mainFunctions.ks").
-DEFINE_PARTS().
 GET_RESOURCE("FIRST STAGE").
 GET_RESOURCE("SECOND STAGE").
 
@@ -98,7 +97,8 @@ function STAGE_SEPARATION {
 			lock throttle to 0.
 
 			wait 1.
-			S1_CPU[0]:getmodule("kOSProcessor"):connection:sendmessage("Run Recovery").
+			S1_CPU[0]:getmodule("kOSProcessor"):connection:sendmessage(list("Run Recovery", S2_CPU[0])).
+			S1_CPU[0]:getmodule("kOSProcessor"):connection:sendmessage(list("Altitude", S2_CPU[0])).
 			S1_INTERSTAGE[0]:getmodule("ModuleDecouple"):doaction("Decouple Top Node", true).
 			set S1_SEPARATED to true.
 

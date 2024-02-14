@@ -1,17 +1,19 @@
 @lazyglobal off.
 runoncepath("0:/partlist.ks").
 
+DEFINE_PARTS().
+
 function DEFINE_PARTS {
     //Define Ground Stage 
     global GND_CPU to core:vessel:partstagged(GND_TAGS["GROUND STAGE"]["CPU"]).
-    print GND_CPU.
+    print GND_CPU[0].
     global GND_STRONGBACK to core:vessel:partstagged(GND_TAGS["GROUND STAGE"]["STRONGBACK"]).
     global GND_BASE to core:vessel:partstagged(GND_TAGS["GROUND STAGE"]["BASE"]).
     global GND_CLAMPS to core:vessel:partstagged(GND_TAGS["GROUND STAGE"]["CLAMPS"]).
 
     //Define Stage 1
     global S1_CPU to core:vessel:partstagged(SHIP_TAGS["FIRST STAGE"]["CPU"]).
-    print S1_CPU.
+    print S1_CPU[0].
     global S1_ENGINE to core:vessel:partstagged(SHIP_TAGS["FIRST STAGE"]["ENGINE"]).
     global S1_TANK to core:vessel:partstagged(SHIP_TAGS["FIRST STAGE"]["TANK"]).
     global S1_INTERSTAGE to core:vessel:partstagged(SHIP_TAGS["FIRST STAGE"]["INTERSTAGE"]).
@@ -19,7 +21,7 @@ function DEFINE_PARTS {
 
     //Define Stage 2
     global S2_CPU to core:vessel:partstagged(SHIP_TAGS["SECOND STAGE"]["CPU"]).
-    print S2_CPU.
+    print S2_CPU[0].
     global S2_ENGINE to core:vessel:partstagged(SHIP_TAGS["SECOND STAGE"]["ENGINE"]).
     global S2_TANK to core:vessel:partstagged(SHIP_TAGS["SECOND STAGE"]["TANK"]).
     global S2_PAYLOAD_ADAPTER to core:vessel:partstagged(SHIP_TAGS["SECOND STAGE"]["PAYLOAD ADAPTER"]).
