@@ -67,7 +67,7 @@ until runmode = 0 {
 			clearscreen.
 			until PAYLOAD_SEPARATED = true {
 				PAYLOAD_SEPARATION().
-				print "Payload Deploy In: " + round(eta:apoapsis,1) + "s" at(0,5).
+				print "Payload Deploy In: " + round(eta:apoapsis-1,1) + "s" at(0,5).
 			}
 			set runmode to 0. //Ends the script
 		}
