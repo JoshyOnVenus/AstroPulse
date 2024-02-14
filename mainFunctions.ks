@@ -3,10 +3,11 @@ runoncepath("0:/partlist.ks").
 runoncepath("0:/groundFunctions.ks").
 DEFINE_PARTS().
 
-global fairings_attached to true.
+global FAIRINGS_ATTACHED to true.
+global PAYLOAD_SEPARATED to false.
 global S1_ENGINE_ON to false.
 global S2_ENGINE_ON to false.
-
+global S1_SEPARATED to false.
 
 function PF_DEPLOY {
     for part in S2_FAIRING {
@@ -15,7 +16,7 @@ function PF_DEPLOY {
             for a in m:allactionnames() {
                 if a:contains("Decouple") {
                     m:doaction(a, true).
-                    set fairings_attached to false.
+                    set FAIRINGS_ATTACHED to false.
 					print "Fairing Deployed".
                 }
             }
@@ -24,13 +25,24 @@ function PF_DEPLOY {
             for a in m:allactionnames() {
                 if a:contains("Jettison Fairing") {
                     m:doaction(a, true).
-                    set fairings_attached to false.
+                    set FAIRINGS_ATTACHED to false.
 					print "Fairing Deployed".
                 }
             }
         }
     }
 } 
+
+function PAYLOAD_SEPARATION {
+	if PAYLOAD_SEPARATED = false and FAIRINGS_ATTACHED = false {
+		lock steering to prograde.
+		if eta:apoapsis <= 1 {
+			S2_PAYLOAD_ADAPTER[0]:getmodule("ModuleDecouple"):doaction("Decoupler Staging", true).
+			set PAYLOAD_SEPARATED to true.
+			print "Payload Deployed!".
+		}
+	}
+}
 
 function ENGINE_CONTROL {
 	parameter stageName, action.
@@ -61,7 +73,7 @@ function ENGINE_CONTROL {
 		}
 		else if action = "Shutdown" {
 			for ENGINE in S2_ENGINE {
-				ENGINE:getmodule("ModuleEnginesFX"):doaction("Activate Engine", true).
+				ENGINE:getmodule("ModuleEnginesFX"):doaction("Shutdown Engine", true).
 				print "Stage 2 - Engine Shutdown".
 			}
 			set S2_ENGINE_ON to false.
@@ -69,7 +81,7 @@ function ENGINE_CONTROL {
 	}
 }
 
-function RESOURCE {
+function GET_RESOURCE {
 	parameter stageName.
 	if stageName = "FIRST STAGE" {
 		for resource in S1_TANK[0]:resources {
@@ -94,5 +106,8 @@ function RESOURCE {
 				global S2_OX_CAPACITY to resource:capacity.
 			}
 		}
+	}
+	else {
+
 	}
 }

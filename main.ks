@@ -1,15 +1,15 @@
+@lazyglobal off.
 runoncepath("0:/partlist.ks").
 runoncepath("0:/groundFunctions.ks").
 runoncepath("0:/mainFunctions.ks").
 DEFINE_PARTS().
-RESOURCE("FIRST STAGE").
-RESOURCE("SECOND STAGE").
+GET_RESOURCE("FIRST STAGE").
+GET_RESOURCE("SECOND STAGE").
 
-set startTime to time:seconds.
 lock g to (constant():g * body:mass) / (body:radius + ship:altitude)^2. //Calculates the gravity of the current celestial body
 lock idealPitch to max(0,(90-90*(apoapsis/body:atm:height))). //Calculates the ideal pitch based on the altitude and atmosphere height
-set targetAlt to 80000. //Set this to the targeted orbit altitude
-set navHeading to 90.
+local targetAlt to 80000. //Set this to the targeted orbit altitude
+local navHeading to 90.
 
 //wait 10.	
 
@@ -22,10 +22,14 @@ when altitude >= 70000 and ship:dynamicpressure <= 2 and fairings_attached then 
 	PF_DEPLOY().
 }
 
-set runmode to 1. //Starts the 1st stage of the script
+clearscreen.
+local runmode to 1. //Starts the 1st stage of the script
 until runmode = 0 {
-	RESOURCE("FIRST STAGE").
-	RESOURCE("SECOND STAGE").	
+	if S1_SEPARATED = false {
+		GET_RESOURCE("FIRST STAGE").
+	}
+	GET_RESOURCE("SECOND STAGE").
+	STAGE_SEPARATION().
 	if runmode = 1 {
 		sas off.
 		lock throttle to 1. //-(apoapsis/targetAlt). //Locks throttle to 100%
@@ -59,29 +63,51 @@ until runmode = 0 {
 		if bestEccentricity() = true {
 			//Locks throttle to 0 and unlocks throttle control
 			lock throttle to 0.
-			set ship:control:pilotmainthrottle to 0.	
+			set ship:control:pilotmainthrottle to 0.
+			clearscreen.
+			until PAYLOAD_SEPARATED = true {
+				PAYLOAD_SEPARATION().
+				print "Payload Deploy In: " + round(eta:apoapsis,1) + "s" at(0,5).
+			}
 			set runmode to 0. //Ends the script
 		}
 	}
-	print "Stage 1 FUEL: " + S1_FUEL_AMOUNT at(0,5).
-	print "Stage 1 FUEL CAP: " + S1_FUEL_CAPACITY at(0,6).
-	print "Stage 1 OX: " + S1_OX_AMOUNT at(0,7).
-	print "Stage 1 OX CAP: " + S1_OX_CAPACITY at(0,8).
-	print "Stage 2 FUEL: " + S2_FUEL_AMOUNT at(0,9).
-	print "Stage 2 FUEL CAP: " + S2_FUEL_CAPACITY at(0,10).
-	print "Stage 2 OX: " + S2_OX_AMOUNT at(0,11).
-	print "Stage 2 OX CAP: " + S2_OX_CAPACITY at(0,12).
+	if S1_SEPARATED = false {
+		print "Stage 1 FUEL: " + round((S1_FUEL_AMOUNT/S1_FUEL_CAPACITY)*100, 1) + "%" at(0,7).
+		print "Stage 1 OX: " + round((S1_OX_AMOUNT/S1_OX_CAPACITY)*100, 1) + "%" at(0,8).
+	}
+	print "Stage 2 FUEL: " + round((S2_FUEL_AMOUNT/S2_FUEL_CAPACITY)*100, 1) + "%" at(0,9).
+	print "Stage 2 OX: " + round((S2_OX_AMOUNT/S2_OX_CAPACITY)*100, 1) + "%" at(0,10).
 
 }
-print "In Orbit! (Hopefully)".
-set runmode to -1.
 
 //returns true when best eccentricity is achieved
 function bestEccentricity
 {
-	set ecc1 to orbit:eccentricity.
+	local ecc1 to orbit:eccentricity.
 	wait 0.
-	set ecc2 to orbit:eccentricity.
+	local ecc2 to orbit:eccentricity.
 	if ecc1<ecc2 or round(apoapsis,1)=round(periapsis,1){return true.}
 	else{return false.}
+}
+
+function STAGE_SEPARATION {
+	if S1_SEPARATED = false {
+		if S1_FUEL_AMOUNT <= 10 {
+			ENGINE_CONTROL("FIRST STAGE", "Shutdown").
+			lock throttle to 0.
+
+			wait 1.
+
+			S1_INTERSTAGE[0]:getmodule("ModuleDecouple"):doaction("Decouple Top Node", true).
+			set S1_SEPARATED to true.
+
+			wait 1.
+			ENGINE_CONTROL("SECOND STAGE", "Start").
+			lock throttle to 0.1.
+
+			wait 1.
+			lock throttle to 1.
+		 }
+	}
 }
