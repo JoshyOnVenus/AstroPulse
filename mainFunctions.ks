@@ -16,7 +16,7 @@ function PF_DEPLOY {
                 if a:contains("Decouple") {
                     m:doaction(a, true).
                     set FAIRINGS_ATTACHED to false.
-					print "Fairing Deployed".
+					//print "Fairing Deployed".
                 }
             }
         } else if part:modules:contains("ProceduralFairingDecoupler") {
@@ -25,7 +25,7 @@ function PF_DEPLOY {
                 if a:contains("Jettison Fairing") {
                     m:doaction(a, true).
                     set FAIRINGS_ATTACHED to false.
-					print "Fairing Deployed".
+					//print "Fairing Deployed".
                 }
             }
         }
@@ -38,7 +38,7 @@ function PAYLOAD_SEPARATION {
 		if eta:apoapsis <= 1 {
 			S2_PAYLOAD_ADAPTER[0]:getmodule("ModuleDecouple"):doaction("Decoupler Staging", true).
 			set PAYLOAD_SEPARATED to true.
-			print "Payload Deployed!".
+			//print "Payload Deployed!".
 		}
 	}
 }
@@ -50,14 +50,14 @@ function ENGINE_CONTROL {
 		if action = "Start" {
 			for ENGINE in S1_ENGINE {
 				ENGINE:getmodule("ModuleEnginesFX"):doaction("Activate Engine", true).
-				print "Stage 1 - Engine Started".
+				//print "Stage 1 - Engine Started".
 			}
 			set S1_ENGINE_ON to true.
 		}
 		else if action = "Shutdown" {
 			for ENGINE in S1_ENGINE {
 				ENGINE:getmodule("ModuleEnginesFX"):doaction("Shutdown Engine", true).
-				print "Stage 1 - Engine Shutdown".
+				//print "Stage 1 - Engine Shutdown".
 			}
 			set S1_ENGINE_ON to false.
 		}
@@ -66,14 +66,14 @@ function ENGINE_CONTROL {
 		if action = "Start" {
 			for ENGINE in S2_ENGINE {
 				ENGINE:getmodule("ModuleEnginesFX"):doaction("Activate Engine", true).
-				print "Stage 2 - Engine Started".
+				//print "Stage 2 - Engine Started".
 			}
 			set S2_ENGINE_ON to true.
 		}
 		else if action = "Shutdown" {
 			for ENGINE in S2_ENGINE {
 				ENGINE:getmodule("ModuleEnginesFX"):doaction("Shutdown Engine", true).
-				print "Stage 2 - Engine Shutdown".
+				//print "Stage 2 - Engine Shutdown".
 			}
 			set S2_ENGINE_ON to false.
 		}

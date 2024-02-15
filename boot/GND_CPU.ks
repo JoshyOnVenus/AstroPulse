@@ -12,4 +12,4 @@ wait until ag6.
 runoncepath("0:/mainFunctions.ks").
 GND_STRONGBACK_RETRACT().
 GND_HOLD_DOWN_CLAMP_RELEASE().
-S2_CPU[0]:getmodule("kOSProcessor"):connection:sendmessage(list("Run Stage 2",GND_CPU[0])).
+S2_CPU[0]:getmodule("kOSProcessor"):connection:sendmessage("Run Stage 2").

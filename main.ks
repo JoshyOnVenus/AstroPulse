@@ -77,7 +77,7 @@ until runmode = 0 {
 	}
 	print "Stage 2 FUEL: " + round((S2_FUEL_AMOUNT/S2_FUEL_CAPACITY)*100, 1) + "%" at(0,9).
 	print "Stage 2 OX: " + round((S2_OX_AMOUNT/S2_OX_CAPACITY)*100, 1) + "%" at(0,10).
-
+	S1_CPU_COMMAND:sendmessage("Altitude").
 }
 
 //returns true when best eccentricity is achieved
@@ -97,8 +97,7 @@ function STAGE_SEPARATION {
 			lock throttle to 0.
 
 			wait 1.
-			S1_CPU[0]:getmodule("kOSProcessor"):connection:sendmessage(list("Run Recovery", S2_CPU[0])).
-			S1_CPU[0]:getmodule("kOSProcessor"):connection:sendmessage(list("Altitude", S2_CPU[0])).
+			S1_CPU_COMMAND:sendmessage("Run Recovery").
 			S1_INTERSTAGE[0]:getmodule("ModuleDecouple"):doaction("Decouple Top Node", true).
 			set S1_SEPARATED to true.
 

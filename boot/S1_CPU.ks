@@ -13,12 +13,12 @@ until false {
     set recievedMessage to core:messages:pop.
     set decodedMessage to recievedMessage:content.
     clearscreen.
-    print "Stage 1 - Message Recieved: " + decodedMessage[0] at(0,2).
+    print "Stage 1 - Message Recieved: " + decodedMessage at(0,2).
 
-    if decodedMessage[0] = "Run Recovery" {
+    if decodedMessage = "Run Recovery" {
         runoncepath("0:/recovery.ks").
     }
-    else if decodedMessage[0] = "Altitude" {
-        decodedMessage[1]:getmodule("kOSProcessor"):connection:sendmessage(list(altitude,S1_CPU[0])).
+    else if decodedMessage = "Altitude" {
+        S2_CPU_COMMAND:sendmessage(altitude).
     }
 }
