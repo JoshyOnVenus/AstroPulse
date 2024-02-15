@@ -73,8 +73,9 @@ until runmode = 0 {
 				PAYLOAD_SEPARATION().
 				print "Payload Deploy In: " + round(eta:apoapsis-1,1) + "s" at(0,5).
 			}
-			wait 10.
+			wait 1.
 			lock steering to retrograde.
+			wait 9.
 			lock throttle to 1.
 			set runmode to 0. //Ends the script
 		}
@@ -110,6 +111,7 @@ function STAGE_SEPARATION {
 			set S1_SEPARATED to true.
 
 			wait 1.
+			rcs on.
 			ENGINE_CONTROL("SECOND STAGE", "Start").
 			lock throttle to 0.1.
 
