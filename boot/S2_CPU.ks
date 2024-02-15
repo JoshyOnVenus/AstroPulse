@@ -1,5 +1,6 @@
 runoncepath("0:/partlist.ks").
 runoncepath("0:/groundFunctions.ks").
+runoncepath("0:/mainFunctions.ks").
 
 //clearscreen.
 S2_CPU[0]:getmodule("kOSProcessor"):doevent("Open Terminal").
@@ -18,5 +19,12 @@ until false {
     if decodedMessage = "Run Stage 2" {
         lock throttle to 1.
         runoncepath("0:/main.ks").
-    } 
+    }
+    if decodedMessage = "Static Fire" {
+        lock throttle to 1.
+        ENGINE_CONTROL("FIRST STAGE", "Start").
+        wait 30.
+        ENGINE_CONTROL("FIRST STAGE", "Shutdown").
+        lock throttle to 0.
+    }
 }

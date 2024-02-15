@@ -8,8 +8,13 @@ print "Waiting For AG6 To Be Pressed..." at(2,10).
 set terminal:width to 40.
 set terminal:height to 12.
 
-wait until ag6.
-runoncepath("0:/mainFunctions.ks").
-GND_STRONGBACK_RETRACT().
-GND_HOLD_DOWN_CLAMP_RELEASE().
-S2_CPU_COMMAND:sendmessage("Run Stage 2").
+until ag6 or ag7 {
+    on ag6 {
+        GND_STRONGBACK_RETRACT().
+        GND_HOLD_DOWN_CLAMP_RELEASE().
+        S2_CPU_COMMAND:sendmessage("Run Stage 2").
+    }
+    on ag7 {
+        S2_CPU_COMMAND:sendmessage("Static Fire").
+    }
+}
