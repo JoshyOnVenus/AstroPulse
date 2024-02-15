@@ -9,12 +9,12 @@ set terminal:width to 40.
 set terminal:height to 12.
 
 until ag6 or ag7 {
-    on ag6 {
+    if ag6 {
         GND_STRONGBACK_RETRACT().
         GND_HOLD_DOWN_CLAMP_RELEASE().
         S2_CPU_COMMAND:sendmessage("Run Stage 2").
     }
-    on ag7 {
+    if ag7 {
         S2_CPU_COMMAND:sendmessage("Static Fire").
     }
 }
