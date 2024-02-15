@@ -9,6 +9,7 @@ function DEFINE_PARTS {
     global GND_STRONGBACK to core:vessel:partstagged(GND_TAGS["GROUND STAGE"]["STRONGBACK"]).
     global GND_BASE to core:vessel:partstagged(GND_TAGS["GROUND STAGE"]["BASE"]).
     global GND_CLAMPS to core:vessel:partstagged(GND_TAGS["GROUND STAGE"]["CLAMPS"]).
+    global GND_DECOUPLER to core:vessel:partstagged(GND_TAGS["GROUND STAGE"]["LAUNCH DECOUPLER"]).
 
     //Define Stage 1
     global S1_CPU to core:vessel:partstagged(SHIP_TAGS["FIRST STAGE"]["CPU"]).
@@ -40,4 +41,8 @@ function GND_HOLD_DOWN_CLAMP_RELEASE {
         part:getmodule("ModuleAnimateGenericExtra"):doaction("toggle hold-down", true).
 		print "Hold Down Clamp Released".
     }
+}
+
+function GND_DECOUPLER_DECOUPLE {
+    GND_DECOUPLER[0]:getmodule("ModuleDecouple"):doaction("Decouple", true).
 }

@@ -18,7 +18,4 @@ until false {
     if decodedMessage = "Run Recovery" {
         runoncepath("0:/recovery.ks").
     }
-    else if decodedMessage = "Altitude" {
-        S2_CPU_COMMAND:sendmessage(altitude).
-    }
 }

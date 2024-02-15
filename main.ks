@@ -10,15 +10,20 @@ lock idealPitch to max(0,(90-90*(apoapsis/body:atm:height))). //Calculates the i
 local targetAlt to 80000. //Set this to the targeted orbit altitude
 local navHeading to 90.
 
-//wait 10.	
-
-set ship:control:pilotmainthrottle to 0.
-lock throttle to 0.
+//wait 10.
 
 ENGINE_CONTROL("FIRST STAGE", "Start").
+GND_DECOUPLER_DECOUPLE().
 
 when altitude >= 70000 and ship:dynamicpressure <= 2 and fairings_attached then {
 	PF_DEPLOY().
+}
+
+when not core:messages:empty then {
+    set recievedMessage to core:messages:pop.
+    set decodedMessage to recievedMessage:content.
+    clearscreen.
+    print "Stage 2 - Message Recieved: " + decodedMessage at(0,2).
 }
 
 //clearscreen.
@@ -68,6 +73,9 @@ until runmode = 0 {
 				PAYLOAD_SEPARATION().
 				print "Payload Deploy In: " + round(eta:apoapsis-1,1) + "s" at(0,5).
 			}
+			wait 10.
+			lock steering to retrograde.
+			lock throttle to 1.
 			set runmode to 0. //Ends the script
 		}
 	}
@@ -105,7 +113,7 @@ function STAGE_SEPARATION {
 			ENGINE_CONTROL("SECOND STAGE", "Start").
 			lock throttle to 0.1.
 
-			wait 1.
+			wait 2.
 			lock throttle to 1.
 		 }
 	}

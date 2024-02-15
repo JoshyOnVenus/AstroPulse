@@ -5,7 +5,8 @@ global GND_TAGS is lexicon(
         "CPU", "GND_CPU",
         "STRONGBACK", "GND_STRONGBACK",
         "BASE", "GND_LAUNCH_BASE",
-        "CLAMPS", "GND_HOLD_DOWN_CLAMP"
+        "CLAMPS", "GND_HOLD_DOWN_CLAMP",
+        "LAUNCH DECOUPLER", "GND_DECOUPLER"
     )
 ).
 

@@ -9,7 +9,6 @@ set terminal:width to 40.
 set terminal:height to 12.
 
 until false {
-    S1_CPU_COMMAND:sendmessage("Altitude").
     wait until not core:messages:empty.
     set recievedMessage to core:messages:pop.
     set decodedMessage to recievedMessage:content.
