@@ -65,6 +65,6 @@ function logData {
 	// }
 				
 	log data to "0:/logs/log.csv".
-	log floor(ship:altitude / 1000, 1) to "0:/logs/alt.txt".
-	log floor(ship:airspeed * 3.6) to "0:/logs/speed.txt".
+	log floor(ship:altitude / 1000, 1)+"KM" to "0:/logs/alt.txt".
+	log floor(ship:airspeed * 3.6)+"KM/H" to "0:/logs/speed.txt".
 }
