@@ -4,7 +4,7 @@ lock landTime to alt:radar / abs(ship:verticalspeed).
 //clearscreen.
 print "Attempting To Recover...".
 
-wait 1.
+wait until verticalSpeed <= 10.
 
 rcs on.
 lock steering to lookdirup(ship:velocity:surface, facing:topvector).
