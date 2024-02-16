@@ -11,7 +11,7 @@ local navHeading to 90.
 
 set steeringManager:maxstoppingtime to 5. // Max Vehicle Turning Speed
 set steeringManager:rollts to 10. // Max Roll Speed
-set config:ipu to 2000. // CPU speed
+// set config:ipu to 2000. // CPU speed
 set kuniverse:defaultloaddistance:flying:unload to 30000.
 
 //wait 10.
