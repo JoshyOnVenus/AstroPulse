@@ -4,7 +4,6 @@ runoncepath("0:/groundFunctions.ks").
 runoncepath("0:/mainFunctions.ks").
 GET_RESOURCE("FIRST STAGE").
 GET_RESOURCE("SECOND STAGE").
-
 lock g to (constant():g * body:mass) / (body:radius + ship:altitude)^2. //Calculates the gravity of the current celestial body
 lock idealPitch to max(0,(90-90*(apoapsis/body:atm:height))). //Calculates the ideal pitch based on the altitude and atmosphere height
 local targetAlt to 80000. //Set this to the targeted orbit altitude
@@ -80,13 +79,11 @@ until runmode = 0 {
 			set runmode to 0. //Ends the script
 		}
 	}
-	if S1_SEPARATED = false {
-		print "Stage 1 FUEL: " + round((S1_FUEL_AMOUNT/S1_FUEL_CAPACITY)*100, 1) + "%" at(0,7).
-		print "Stage 1 OX: " + round((S1_OX_AMOUNT/S1_OX_CAPACITY)*100, 1) + "%" at(0,8).
-	}
+	print "Stage 1 FUEL: " + round((S1_FUEL_AMOUNT/S1_FUEL_CAPACITY)*100, 1) + "%" at(0,7).
+	print "Stage 1 OX: " + round((S1_OX_AMOUNT/S1_OX_CAPACITY)*100, 1) + "%" at(0,8).
 	print "Stage 2 FUEL: " + round((S2_FUEL_AMOUNT/S2_FUEL_CAPACITY)*100, 1) + "%" at(0,9).
 	print "Stage 2 OX: " + round((S2_OX_AMOUNT/S2_OX_CAPACITY)*100, 1) + "%" at(0,10).
-	S1_CPU_COMMAND:sendmessage("Altitude").
+	//S1_CPU_COMMAND:sendmessage("Altitude").
 }
 
 //returns true when best eccentricity is achieved

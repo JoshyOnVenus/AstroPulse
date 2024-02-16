@@ -110,3 +110,29 @@ function GET_RESOURCE {
 
 	}
 }
+
+function GET_ALTITUDE {
+	parameter stageName.
+	if stageName = "FIRST STAGE" {
+		global S1_ALT to S1_CPU[0]:ship:altitude.
+	}
+	else if stageName = "SECOND STAGE" {
+		global S2_ALT to S2_CPU[0]:ship:altitude.
+	}
+	else {
+
+	}
+}
+
+function GET_SPEED {
+	parameter stageName.
+	if stageName = "FIRST STAGE" {
+		global S1_SPEED to S1_CPU[0]:ship:airspeed.
+	}
+	else if stageName = "SECOND STAGE" {
+		global S2_SPEED to S2_CPU[0]:ship:airspeed.
+	}
+	else {
+
+	}
+}
