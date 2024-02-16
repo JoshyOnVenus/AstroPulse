@@ -19,3 +19,5 @@ until status = "SPLASHED" or status = "LANDED" {
     print landTime at(0,3).
     print altitude at(0,4).
 }
+rcs off.
+unlock steering.
