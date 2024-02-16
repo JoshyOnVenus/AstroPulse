@@ -17,5 +17,6 @@ for p in S1_CHUTE {
 
 until status = "SPLASHED" or status = "LANDED" {
     print landTime at(0,3).
+    print altitude at(0,4).
     S2_CPU_COMMAND:sendmessage(altitude).
 }
