@@ -1,7 +1,6 @@
 runoncepath("0:/partlist.ks").
 runoncepath("0:/groundFunctions.ks").
 runoncepath("0:/mainFunctions.ks").
-set kuniverse:defaultloaddistance to 30000.
 
 //clearscreen.
 S2_CPU[0]:getmodule("kOSProcessor"):doevent("Open Terminal").

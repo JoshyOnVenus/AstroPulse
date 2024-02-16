@@ -9,6 +9,8 @@ lock idealPitch to max(0,(90-90*(apoapsis/body:atm:height))). //Calculates the i
 local targetAlt to 80000. //Set this to the targeted orbit altitude
 local navHeading to 90.
 
+set kuniverse:defaultloaddistance:flying:unload to 30000.
+
 //wait 10.
 
 ENGINE_CONTROL("FIRST STAGE", "Start").
