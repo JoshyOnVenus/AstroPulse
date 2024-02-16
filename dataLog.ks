@@ -32,10 +32,10 @@ function initLogger {
 function logData {
 	GET_RESOURCE("FIRST STAGE").
 	GET_RESOURCE("SECOND STAGE").
-	GET_ALTITUDE("FIRST STAGE").
-	GET_ALTITUDE("SECOND STAGE").
-	GET_SPEED("FIRST STAGE").
-	GET_SPEED("SECOND STAGE").
+	// GET_ALTITUDE("FIRST STAGE").
+	// GET_ALTITUDE("SECOND STAGE").
+	// GET_SPEED("FIRST STAGE").
+	// GET_SPEED("SECOND STAGE").
 	set data to time:seconds + "," +
 		(time:seconds - startTime) + "," +
 		ship:altitude + "," +
@@ -56,10 +56,10 @@ function logData {
 		round((S2_OX_AMOUNT/S2_OX_CAPACITY)*100, 1) + "%".
 				
 	log data to "0:/logs/log.csv".
-	log floor(S1_ALT / 1000, 1)+"KM" to "0:/logs/s1_alt.txt".
-	log floor(S2_ALT / 1000, 1)+"KM" to "0:/logs/s2_alt.txt".
-	log floor(S1_SPEED * 3.6)+"KM/H" to "0:/logs/s1_speed.txt".
-	log floor(S2_SPEED * 3.6)+"KM/H" to "0:/logs/s2_speed.txt".
+	// log floor(S1_ALT / 1000, 1)+"KM" to "0:/logs/s1_alt.txt".
+	// log floor(S2_ALT / 1000, 1)+"KM" to "0:/logs/s2_alt.txt".
+	// log floor(S1_SPEED * 3.6)+"KM/H" to "0:/logs/s1_speed.txt".
+	// log floor(S2_SPEED * 3.6)+"KM/H" to "0:/logs/s2_speed.txt".
 	log round((S1_FUEL_AMOUNT/S1_FUEL_CAPACITY)*100, 1) + "%" to "0:/logs/s1_fuel.txt".
 	log round((S2_FUEL_AMOUNT/S2_FUEL_CAPACITY)*100, 1) + "%" to "0:/logs/s2_fuel.txt".
 }
