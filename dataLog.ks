@@ -14,9 +14,13 @@ function initLogger {
 	log "." to "0:/logs/log.csv".
 	log "." to "0:/logs/alt.txt".
 	log "." to "0:/logs/speed.txt".
+	log "." to "0:/logs/s1_fuel.txt".
+	log "." to "0:/logs/s2_fuel.txt".
 	deletepath("0:/logs/log.csv").
 	deletepath("0:/logs/alt.txt").
 	deletepath("0:/logs/speed.txt").
+	deletepath("0:/logs/s1_fuel.txt").
+	deletepath("0:/logs/s2_fuel.txt").
 	set header to "UT,TIME,ALTITUDE,APOAPSIS,PERIAPSIS,INCLINATION,S VELOCITY,O VELOCITY,THRUST,MASS,IDEAL PITCH,PITCH,GRAVITY,STAGE,S1 FUEL,S1 OX,S2 FUEL,S2 OX".
 	log header to "0:/logs/log.csv".
 }
@@ -67,4 +71,6 @@ function logData {
 	log data to "0:/logs/log.csv".
 	log floor(ship:altitude / 1000, 1)+"KM" to "0:/logs/alt.txt".
 	log floor(ship:airspeed * 3.6)+"KM/H" to "0:/logs/speed.txt".
+	log round((S1_FUEL_AMOUNT/S1_FUEL_CAPACITY)*100, 1) + "%" to "0:/logs/s1_fuel.txt".
+	log round((S2_FUEL_AMOUNT/S2_FUEL_CAPACITY)*100, 1) + "%" to "0:/logs/s2_fuel.txt".
 }
