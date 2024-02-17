@@ -1,9 +1,10 @@
-lock trueRadar to alt:radar - 2.
+lock trueRadar to alt:radar.
+lock totalSpeed to sqrt((ship:verticalspeed^2)+(ship:groundspeed^2)).
 lock g to (constant():g * body:mass) / (body:radius + trueRadar)^2.
 lock maxDeceleration to (ship:availableThrust / ship:mass) - g.
-lock stoppingDistance to ship:verticalspeed^2 / (2 * maxDeceleration).
+lock stoppingDistance to totalSpeed^2 / (2 * maxDeceleration).
 lock pct to stoppingDistance / trueRadar.
-lock impactTime to trueRadar / abs(ship:verticalspeed).
+lock impactTime to trueRadar / abs(totalSpeed).
 
 clearscreen.
 
@@ -27,11 +28,15 @@ until runmode = 0 {
 	}
 	else if runmode = 2 {
 		lock throttle to pct.
-		if ship:verticalspeed >= -0.1 {
+		if totalSpeed >= -0.1 {
 			set runmode to 0.
 		}
 	}
-	logData().
+	print pct at(0,1).
+	print stoppingDistance at(0,2).
+	print totalSpeed at(0,3).
+	print maxDeceleration at (0,4).
+	print impactTime at(0,5).
 }
 print "Ship Has Landed!".
 rcs off.
