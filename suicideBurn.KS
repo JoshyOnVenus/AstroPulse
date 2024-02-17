@@ -28,7 +28,7 @@ until runmode = 0 {
 	}
 	else if runmode = 2 {
 		lock throttle to pct.
-		if totalSpeed >= -0.1 {
+		if ship:verticalspeed >= -0.1 {
 			set runmode to 0.
 		}
 	}
