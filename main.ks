@@ -6,7 +6,7 @@ GET_RESOURCE("FIRST STAGE").
 GET_RESOURCE("SECOND STAGE").
 lock g to (constant():g * body:mass) / (body:radius + ship:altitude)^2. //Calculates the gravity of the current celestial body
 lock idealPitch to max(0,(90-90*(apoapsis/body:atm:height))). //Calculates the ideal pitch based on the altitude and atmosphere height
-local targetAlt to 100000. //Set this to the targeted orbit altitude
+local targetAlt to 250000. //Set this to the targeted orbit altitude
 local navHeading to 90.
 
 // set steeringManager:maxstoppingtime to 5. // Max Vehicle Turning Speed
@@ -106,19 +106,19 @@ function STAGE_SEPARATION {
 		if S1_FUEL_AMOUNT <= 10 {
 			ENGINE_CONTROL("FIRST STAGE", "Shutdown").
 			lock throttle to 0.
-
-			wait 1.
 			S1_CPU_COMMAND:sendmessage("Run Recovery").
+
+			rcs on.
+			wait 2.
 			S1_INTERSTAGE[0]:getmodule("ModuleDecouple"):doaction("Decouple Top Node", true).
 			set S1_SEPARATED to true.
 
-			wait 1.
-			rcs on.
 			ENGINE_CONTROL("SECOND STAGE", "Start").
-			lock throttle to 0.1.
+			lock throttle to 0.5.
 
 			wait 2.
 			lock throttle to 1.
+			rcs off.
 		 }
 	}
 }
