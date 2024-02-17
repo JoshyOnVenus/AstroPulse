@@ -1,4 +1,4 @@
-lock trueRadar to alt:radar.
+lock trueRadar to altitude-SHIP:GEOPOSITION:TERRAINHEIGHT.
 lock totalSpeed to sqrt((ship:verticalspeed^2)+(ship:groundspeed^2)).
 lock g to (constant():g * body:mass) / (body:radius + trueRadar)^2.
 lock maxDeceleration to (ship:availableThrust / ship:mass) - g.
@@ -21,7 +21,7 @@ until runmode = 0 {
 		stage.
 		rcs on.
 		brakes on.
-		lock steering to lookdirup(-ship:velocity:surface, ship:up:vector).
+		lock steering to lookdirup(ship:velocity:surface, facing:topvector).
 		if trueRadar <= stoppingDistance {
 			set runmode to 2.
 		}
