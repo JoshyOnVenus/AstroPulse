@@ -32,7 +32,7 @@ function initLogger {
 }
 
 function logData {
-	set time to time:seconds - startTime.
+	set elapsedTime to time:seconds - startTime.
 	GET_RESOURCE("FIRST STAGE").
 	GET_RESOURCE("SECOND STAGE").
 	// GET_ALTITUDE("FIRST STAGE").
@@ -40,7 +40,7 @@ function logData {
 	// GET_SPEED("FIRST STAGE").
 	GET_SPEED("SECOND STAGE").
 	set data to time:seconds + "," +
-		(time) + "," +
+		(elapsedTime) + "," +
 		ship:altitude + "," +
 		ship:orbit:apoapsis + "," +
 		max(0,ship:orbit:periapsis) + "," +
@@ -58,7 +58,7 @@ function logData {
 		round((S2_FUEL_AMOUNT/S2_FUEL_CAPACITY)*100, 1) + "%" +"," +
 		round((S2_OX_AMOUNT/S2_OX_CAPACITY)*100, 1) + "%".
 				
-	set myMET to timespan(time).
+	set myMET to timespan(elapsedTime).
 	log data to "0:/logs/log.csv".
 	// log floor(S1_ALT / 1000, 1)+"KM" to "0:/logs/s1_alt.txt".
 	log floor(S2_ALT / 1000, 1)+"KM" to "0:/logs/s2_alt.txt".
