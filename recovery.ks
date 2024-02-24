@@ -1,16 +1,17 @@
 runoncepath("0:/partlist.ks").
 runoncepath("0:/groundFunctions.ks").
+runoncepath("0:/mainFunctions.ks").
 lock landTime to alt:radar / abs(ship:verticalspeed).
 //clearscreen.
 print "Attempting To Recover...".
 
-rcs off.
+lock steering to prograde.
 
-wait until verticalSpeed <= 10.
+wait until verticalSpeed <= 20.
 
 rcs on.
 
-lock steering to lookdirup(ship:velocity:surface, facing:topvector).
+lock steering to lookdirup(-ship:velocity:surface, facing:topvector).
 
 wait until verticalSpeed <= 0.
 
@@ -21,6 +22,13 @@ for p in S1_CHUTE {
 until status = "SPLASHED" or status = "LANDED" {
     print landTime at(0,3).
     print altitude at(0,4).
+	if landTime <= 1 {
+		ENGINE_CONTROL("FIRST STAGE", "Start").
+		lock throttle to 1.
+	} else {
+		lock throttle to 0.
+	}
 }
+lock throttle to 0.
 rcs off.
 unlock steering.

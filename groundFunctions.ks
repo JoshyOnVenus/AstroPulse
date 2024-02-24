@@ -20,7 +20,7 @@ function DEFINE_PARTS {
 
     //Define Stage 2
     global S2_CPU to core:vessel:partstagged(SHIP_TAGS["SECOND STAGE"]["CPU"]).
-    global S2_ENGINE to core:vessel:partstagged(SHIP_TAGS["SECOND STAGE"]["ENGINE"]).
+    global S2_ENGINE to S2_CPU[0]:ship:partstagged(SHIP_TAGS["SECOND STAGE"]["ENGINE"]).
     global S2_TANK to core:vessel:partstagged(SHIP_TAGS["SECOND STAGE"]["TANK"]).
     global S2_PAYLOAD_ADAPTER to core:vessel:partstagged(SHIP_TAGS["SECOND STAGE"]["PAYLOAD ADAPTER"]).
     global S2_FAIRING to core:vessel:partstagged(SHIP_TAGS["SECOND STAGE"]["FAIRING"]).

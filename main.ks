@@ -32,6 +32,7 @@ when not core:messages:empty then {
 
 //clearscreen.
 local runmode to 1. //Starts the 1st stage of the script
+lock steering to heading(navHeading, idealPitch,0).
 until runmode = 0 {
 	if S1_SEPARATED = false {
 		GET_RESOURCE("FIRST STAGE").
@@ -41,12 +42,12 @@ until runmode = 0 {
 	if runmode = 1 {
 		sas off.
 		lock throttle to 1. //-(apoapsis/targetAlt). //Locks throttle to 100%
-		lock steering to heading(navHeading,90,0). //Locks steering to straight up, east
+		 //Locks steering to straight up, east
 		print "Begining Pitch Manoeuvre".
 		set runmode to 2. //Begins 2nd stage of the script
 	}
 	else if runmode = 2 {
-		lock steering to heading(navHeading, idealPitch,0). //Locks steering to idealPitch pointing east
+		 //Locks steering to idealPitch pointing east
 		if apoapsis >= targetAlt { //Check if apoapsis is greater than or equal to target altitude (with a margin of error of 100m)
 			lock throttle to 0. 
 			set runmode to 3. //Begins 3rd stage of the script
@@ -103,22 +104,22 @@ function bestEccentricity
 
 function STAGE_SEPARATION {
 	if S1_SEPARATED = false {
-		if S1_FUEL_AMOUNT <= 10 {
+		if S1_FUEL_AMOUNT <= 5 {
 			ENGINE_CONTROL("FIRST STAGE", "Shutdown").
 			lock throttle to 0.
-			S1_CPU_COMMAND:sendmessage("Run Recovery").
 
 			rcs on.
-			wait 2.
+			wait 1.
+			S1_CPU_COMMAND:sendmessage("Run Recovery").
 			S1_INTERSTAGE[0]:getmodule("ModuleDecouple"):doaction("Decouple Top Node", true).
 			set S1_SEPARATED to true.
-
+			
+			rcs on.
 			ENGINE_CONTROL("SECOND STAGE", "Start").
-			lock throttle to 0.5.
+			lock throttle to 0.1.
 
 			wait 2.
 			lock throttle to 1.
-			rcs off.
 		 }
 	}
 }
