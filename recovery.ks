@@ -7,11 +7,15 @@ print "Attempting To Recover...".
 
 lock steering to prograde.
 
-wait until verticalSpeed <= 20.
+wait 2.
+
+gear on.
 
 rcs on.
 
 lock steering to lookdirup(-ship:velocity:surface, facing:topvector).
+
+wait until verticalSpeed <= 20.
 
 wait until verticalSpeed <= 0.
 
