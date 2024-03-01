@@ -6,8 +6,8 @@ GET_RESOURCE("FIRST STAGE").
 GET_RESOURCE("SECOND STAGE").
 lock g to (constant():g * body:mass) / (body:radius + ship:altitude)^2. //Calculates the gravity of the current celestial body
 lock idealPitch to max(0,(90-90*(apoapsis/body:atm:height))). //Calculates the ideal pitch based on the altitude and atmosphere height
-local targetAlt to 500000. //Set this to the targeted orbit altitude
-local navHeading to 0.
+local targetAlt to 750000. //Set this to the targeted orbit altitude
+local navHeading to 90.
 
 // set steeringManager:maxstoppingtime to 5. // Max Vehicle Turning Speed
 // set steeringManager:rollts to 10. // Max Roll Speed
