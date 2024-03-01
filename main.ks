@@ -78,9 +78,9 @@ until runmode = 0 {
 			}
 			wait 1.
 			lock steering to retrograde.
-			wait 9.
+			wait 25.
 			lock throttle to 1.
-			set runmode to 0. //Ends the script
+			set runmode to 0.
 		} else {
 			lock throttle to mass*(1000*orbit:eccentricity)/ship:availablethrust.
 		}
