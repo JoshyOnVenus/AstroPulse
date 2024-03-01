@@ -96,7 +96,7 @@ until runmode = 0 {
 function bestEccentricity
 {
 	local ecc1 to orbit:eccentricity.
-	wait 0.01.
+	wait 0.1.
 	local ecc2 to orbit:eccentricity.
 	if ecc1<ecc2 or apoapsis=periapsis {
 		return true.
