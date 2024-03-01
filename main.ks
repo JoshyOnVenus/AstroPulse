@@ -98,8 +98,11 @@ function bestEccentricity
 	local ecc1 to orbit:eccentricity.
 	wait 0.01.
 	local ecc2 to orbit:eccentricity.
-	if ecc1<ecc2 or apoapsis=periapsis{return true.}
-	else{return false.}
+	if ecc1<ecc2 or apoapsis=periapsis {
+		return true.
+	} else {
+		return false.
+	}
 }
 
 function STAGE_SEPARATION {
