@@ -76,7 +76,7 @@ until runmode = 0 {
 				PAYLOAD_SEPARATION().
 				print "Payload Deploy In: " + round(eta:apoapsis-1,1) + "s" at(0,5).
 			}
-			wait 1.
+			wait 10.
 			lock steering to retrograde.
 			wait 25.
 			lock throttle to 1.
