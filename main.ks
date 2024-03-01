@@ -68,9 +68,7 @@ until runmode = 0 {
 		}
 	}
 	else if runmode = 4 {
-		//-(periapsis/targetAlt).
 		if bestEccentricity() = true {
-			//Locks throttle to 0 and unlocks throttle control
 			lock throttle to 0.
 			set ship:control:pilotmainthrottle to 0.
 			clearscreen.
