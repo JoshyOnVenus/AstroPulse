@@ -6,8 +6,8 @@ GET_RESOURCE("FIRST STAGE").
 GET_RESOURCE("SECOND STAGE").
 lock g to (constant():g * body:mass) / (body:radius + ship:altitude)^2. //Calculates the gravity of the current celestial body
 lock idealPitch to max(0,(90-90*(apoapsis/body:atm:height))). //Calculates the ideal pitch based on the altitude and atmosphere height
-local targetAlt to 250000. //Set this to the targeted orbit altitude
-local navHeading to 90.
+local targetAlt to 500000. //Set this to the targeted orbit altitude
+local navHeading to 0.
 
 // set steeringManager:maxstoppingtime to 5. // Max Vehicle Turning Speed
 // set steeringManager:rollts to 10. // Max Roll Speed
@@ -59,7 +59,7 @@ until runmode = 0 {
 		lock burnTime TO (targetVel - Ship:VELOCITY:ORBIT:MAG) / shipMaxAcc.
 		lock timeToBurn TO (TIME:SECONDS + ETA:APOAPSIS - (burnTime / 2) - TIME:SECONDS).
 		lock steering to prograde.
-		if timeToBurn <= 0 {
+		if timeToBurn <= 0.1 {
 			set runmode to 4. //Begins 4th stage of the script
 		} else if timeToBurn <= 10 {
 			//set warp to 0.
