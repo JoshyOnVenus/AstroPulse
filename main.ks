@@ -68,7 +68,7 @@ until runmode = 0 {
 		}
 	}
 	else if runmode = 4 {
-		lock throttle to mass*(1000*orbit:eccentricity)/ship:availablethrust. //-(periapsis/targetAlt).
+		//-(periapsis/targetAlt).
 		if bestEccentricity() = true {
 			//Locks throttle to 0 and unlocks throttle control
 			lock throttle to 0.
@@ -83,6 +83,8 @@ until runmode = 0 {
 			wait 9.
 			lock throttle to 1.
 			set runmode to 0. //Ends the script
+		} else {
+			lock throttle to mass*(1000*orbit:eccentricity)/ship:availablethrust.
 		}
 	}
 	print "Stage 1 FUEL: " + round((S1_FUEL_AMOUNT/S1_FUEL_CAPACITY)*100, 1) + "%" at(0,7).
@@ -98,7 +100,7 @@ function bestEccentricity
 	local ecc1 to orbit:eccentricity.
 	wait 0.01.
 	local ecc2 to orbit:eccentricity.
-	if ecc1<ecc2 or round(apoapsis,1)=round(periapsis,1){return true.}
+	if ecc1<ecc2 or apoapsis=periapsis{return true.}
 	else{return false.}
 }
 
